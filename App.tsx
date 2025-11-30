@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { Plus, Download, Calculator, Equal, Trash2, ArrowRight } from 'lucide-react';
+import { Plus, Download, Calculator, Trash2 } from 'lucide-react';
 import { Matrix, OperationType, CalculationResult } from './types';
 import MatrixInput from './components/MatrixInput';
 import ResultDisplay from './components/ResultDisplay';

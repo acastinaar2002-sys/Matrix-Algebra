@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
-import { CalculationResult, CalculationStep } from '../types';
-import { Info, ChevronDown, ChevronUp } from 'lucide-react';
+import { CalculationResult } from '../types';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 interface ResultDisplayProps {
   results: CalculationResult[];

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Matrix } from '../types';
-import { Trash2, GripHorizontal, RefreshCcw, MoreHorizontal } from 'lucide-react';
-import { generateRandomMatrixData, createIdentityMatrix } from '../services/matrixUtils';
+import { Trash2, RefreshCcw } from 'lucide-react';
+import { generateRandomMatrixData } from '../services/matrixUtils';
 
 interface MatrixInputProps {
   matrix: Matrix;
@@ -41,14 +41,6 @@ const MatrixInput: React.FC<MatrixInputProps> = ({
     onUpdate(matrix.id, { ...matrix, data: newData });
   };
 
-  const handleIdentity = () => {
-      const size = Math.min(matrix.rows, matrix.cols);
-      const newData = createIdentityMatrix(size);
-      // If rectangular, it will crop or pad. Let's force square for identity best practice or just fill
-      // But creating identity implies square. Let's make it square
-      onUpdate(matrix.id, { ...matrix, rows: size, cols: size, data: newData });
-  };
-
   return (
     <div className="group relative bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden">
       
@@ -58,8 +50,6 @@ const MatrixInput: React.FC<MatrixInputProps> = ({
            <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 font-bold shadow-inner">
              {matrix.name}
            </div>
-           {/* Rename */}
-           {/* We can stick to fixed names or allow rename. Prompt says "A, B, C..." implied list. keeping fixed is safer for parsing logic but user can rename if careful. */}
            <span className="text-xs text-slate-400 font-medium tracking-wide">
              {matrix.rows} × {matrix.cols}
            </span>
@@ -74,7 +64,7 @@ const MatrixInput: React.FC<MatrixInputProps> = ({
              <RefreshCcw size={14} />
            </button>
            <button 
-            onClick={onRemove}
+            onClick={() => onRemove(matrix.id)}
             title="Remove"
             className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-full transition"
            >
